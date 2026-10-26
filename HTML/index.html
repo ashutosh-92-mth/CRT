@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create a Facebook account" />
+  <title>Facebook - Sign Up</title>
+  <style>
+    :root {
+      --blue: #3b5998;
+      --blue-dark: #29487d;
+      --green: #69a74e;
+      --ink: #333;
+      --muted: #737373;
+      --line: #d3d6db;
+      --page: #e9edf4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--page);
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      min-height: 84px;
+      color: #fff;
+      background: var(--blue);
+      border-bottom: 1px solid #29487d;
+    }
+
+    .header-inner {
+      width: min(980px, calc(100% - 40px));
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+    }
+
+    .brand {
+      margin: 0;
+      color: #fff;
+      font-size: 2.55rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .header-login {
+      display: flex;
+      align-items: flex-end;
+      gap: 13px;
+      margin-top: 8px;
+    }
+
+    .header-field { display: grid; gap: 5px; }
+    .header-field label { font-size: .75rem; font-weight: 700; }
+
+    .header-field input {
+      width: 150px;
+      height: 26px;
+      padding: 3px 5px;
+      border: 1px solid #1d2e50;
+      border-radius: 0;
+      font-size: .85rem;
+    }
+
+    .header-actions { display: grid; gap: 4px; }
+
+    .header-button {
+      height: 27px;
+      padding: 0 9px;
+      border: 1px solid #29487d;
+      border-radius: 2px;
+      color: #fff;
+      background: #4267a9;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .header-actions a {
+      color: #c4d2ea;
+      font-size: .7rem;
+      text-decoration: none;
+    }
+
+    .header-actions a:hover { text-decoration: underline; }
+
+    main {
+      width: min(980px, calc(100% - 40px));
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.28fr 1fr;
+      gap: 78px;
+      align-items: start;
+      margin: 0 auto;
+      padding: 54px 0 78px;
+    }
+
+    .tagline {
+      max-width: 470px;
+      margin: 10px 0 52px;
+      color: #222;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.28;
+    }
+
+    .feature-list { display: grid; gap: 28px; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      align-items: center;
+      max-width: 510px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 3px solid #9cadc9;
+      border-radius: 3px;
+      color: #8799b7;
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: inset 0 0 0 3px var(--page);
+    }
+
+    .feature p { margin: 0; color: #555; font-size: .98rem; }
+    .feature strong { margin-right: 7px; color: #333; font-size: 1.02rem; }
+
+    .signup { padding-top: 4px; }
+
+    .signup h2 {
+      margin: 0;
+      color: #222;
+      font-size: 2.25rem;
+      line-height: 1.1;
+    }
+
+    .signup-lead { margin: 5px 0 20px; font-size: 1.15rem; }
+
+    .signup-card { max-width: 400px; }
+
+    form { display: grid; gap: 11px; }
+
+    .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    input, select {
+      width: 100%;
+      height: 40px;
+      padding: 0 10px;
+      border: 1px solid #c8ccd1;
+      border-radius: 5px;
+      color: var(--ink);
+      background: #fff;
+      font: 1rem Helvetica, Arial, sans-serif;
+      outline: none;
+    }
+
+    input::placeholder { color: #8a8d91; }
+    input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgb(59 89 152 / 20%); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      font: 700 1rem Helvetica, Arial, sans-serif;
+      transition: filter 140ms ease, transform 140ms ease;
+    }
+
+    button:hover { filter: brightness(.96); }
+    button:active { transform: translateY(1px); }
+
+    .create-button {
+      width: 195px;
+      height: 42px;
+      margin-top: 8px;
+      background: var(--green);
+      border: 1px solid #3b6e22;
+      border-radius: 4px;
+      font-size: 1.15rem;
+    }
+
+    .create-button:hover { background: #36a420; }
+
+    .birthday-label, .gender-label {
+      display: block;
+      margin: 7px 0 6px;
+      font-size: 1rem;
+    }
+
+    .birthday-row { display: flex; align-items: center; gap: 4px; }
+    .birthday-row select { width: auto; min-width: 68px; height: 31px; border-radius: 0; font-size: .9rem; }
+    .birthday-help { margin-left: 8px; color: var(--blue); font-size: .7rem; line-height: 1.1; }
+    .gender-row { display: flex; gap: 18px; }
+    .gender-row label { font-size: 1rem; }
+    .gender-row input { width: auto; height: auto; margin-right: 5px; }
+    .terms { max-width: 375px; margin: 6px 0 2px; color: #777; font-size: .68rem; line-height: 1.3; }
+    .terms a { color: var(--blue); text-decoration: none; }
+    .terms a:hover { text-decoration: underline; }
+    .message { min-height: 0; margin: 0; color: #c92a2a; font-size: .78rem; }
+    .message.success { color: #3b6e22; }
+
+    footer {
+      min-height: 135px;
+      padding: 26px max(20px, calc((100% - 980px) / 2)) 30px;
+      color: #737373;
+      background: #fff;
+      font-size: .75rem;
+      line-height: 1.8;
+    }
+
+    .languages, .links { display: flex; flex-wrap: wrap; gap: 0 18px; }
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-line { height: 1px; margin: 8px 0; background: var(--line); }
+    .copyright { margin: 12px 0 0; }
+
+    @media (max-width: 760px) {
+      .header-inner { width: min(100% - 24px, 520px); min-height: auto; padding: 18px 0; align-items: flex-start; gap: 20px; }
+      .header-login { flex: 1; flex-wrap: wrap; justify-content: flex-end; margin-top: 0; }
+      .header-field input { width: 132px; }
+      main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        align-content: start;
+        padding: 40px 0 60px;
+      }
+      .intro, .signup { max-width: 500px; margin: auto; }
+      .tagline { margin-bottom: 32px; font-size: 1.5rem; }
+    }
+
+    @media (max-width: 420px) {
+      .header-inner { display: block; }
+      .header-login { justify-content: flex-start; margin-top: 18px; }
+      main { width: min(100% - 24px, 396px); padding-top: 34px; }
+      .name-row { grid-template-columns: 1fr; }
+      footer { padding-right: 12px; padding-left: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <h1 class="brand">facebook</h1>
+        <form class="header-login" id="header-login" novalidate>
+          <div class="header-field">
+            <label for="header-email">Email or Phone</label>
+            <input id="header-email" type="text" autocomplete="username" />
+          </div>
+          <div class="header-field">
+            <label for="header-password">Password</label>
+            <input id="header-password" type="password" autocomplete="current-password" />
+          </div>
+          <div class="header-actions">
+            <button class="header-button" type="submit">Log In</button>
+            <a href="#forgot-password">Forgot account?</a>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="brand-name">
+        <h2 class="sr-only" id="brand-name">Facebook</h2>
+        <p class="tagline">Connect with friends and the world around you on Facebook.</p>
+        <div class="feature-list">
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">=</span>
+            <p><strong>See photos and updates</strong> from friends in News Feed.</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">*</span>
+            <p><strong>Share what's new</strong> in your life on your Timeline.</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">+</span>
+            <p><strong>Find more</strong> of what you're looking for with Facebook Search.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="signup" aria-labelledby="signup-heading">
+        <h2 id="signup-heading">Sign Up</h2>
+        <p class="signup-lead">It's free and always will be.</p>
+        <div class="signup-card">
+          <form id="signup-form" novalidate>
+            <div class="name-row">
+              <label class="sr-only" for="first-name">First name</label>
+              <input id="first-name" name="first-name" type="text" placeholder="First name" required />
+              <label class="sr-only" for="last-name">Last name</label>
+              <input id="last-name" name="last-name" type="text" placeholder="Last name" required />
+            </div>
+            <label class="sr-only" for="signup-email">Mobile number or email</label>
+            <input id="signup-email" name="email" type="text" placeholder="Mobile number or email" required />
+            <label class="sr-only" for="new-password">New password</label>
+            <input id="new-password" name="password" type="password" placeholder="New password" required />
+
+            <div>
+              <span class="birthday-label">Birthday:</span>
+              <div class="birthday-row">
+                <label class="sr-only" for="month">Birth month</label>
+                <select id="month" name="month"><option>Jan</option><option>Feb</option><option>Mar</option></select>
+                <label class="sr-only" for="day">Birth day</label>
+                <select id="day" name="day"><option>9</option><option>10</option><option>11</option></select>
+                <label class="sr-only" for="year">Birth year</label>
+                <select id="year" name="year"><option>1993</option><option>1994</option><option>1995</option></select>
+                <a class="birthday-help" href="#birthday-help">Why do I need to provide my birthday?</a>
+              </div>
+            </div>
+
+            <div>
+              <span class="gender-label">Gender:</span>
+              <div class="gender-row">
+                <label><input type="radio" name="gender" value="female" />Female</label>
+                <label><input type="radio" name="gender" value="male" />Male</label>
+              </div>
+            </div>
+
+            <p class="terms">By clicking Create Account, you agree to our <a href="#terms">Terms</a> and that you have read our <a href="#data-policy">Data Policy</a>, including our <a href="#cookie-use">Cookie Use</a>. You may receive SMS Notifications from Facebook and can opt out at any time.</p>
+            <p class="message" id="message" role="alert" aria-live="polite"></p>
+            <button class="create-button" type="submit">Create Account</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <nav class="languages" aria-label="Languages">
+        <a href="#english">English (UK)</a><a href="#hindi">हिन्दी</a><a href="#marathi">मराठी</a><a href="#urdu">اردو</a><a href="#bengali">বাংলা</a><a href="#tamil">தமிழ்</a><a href="#telugu">తెలుగు</a><a href="#gujarati">ગુજરાતી</a><a href="#kannada">ಕನ್ನಡ</a><a href="#malayalam">മലയാളം</a><a href="#more-languages">More languages</a>
+      </nav>
+      <div class="footer-line"></div>
+      <nav class="links" aria-label="Footer links">
+        <a href="#signup">Sign Up</a><a href="#login">Log In</a><a href="#messenger">Messenger</a><a href="#facebook-lite">Facebook Lite</a><a href="#video">Video</a><a href="#places">Places</a><a href="#games">Games</a><a href="#marketplace">Marketplace</a><a href="#meta-pay">Meta Pay</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#help">Help</a>
+      </nav>
+      <p class="copyright">Meta © 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.querySelector('#signup-form');
+    const message = document.querySelector('#message');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const requiredFields = [...form.querySelectorAll('[required]')];
+      const emptyField = requiredFields.find((field) => !field.value.trim());
+
+      if (emptyField) {
+        message.textContent = 'Please complete all required fields.';
+        emptyField.focus();
+        return;
+      }
+
+      message.textContent = 'Your demo account is ready to be created.';
+      message.classList.add('success');
+    });
+
+    document.querySelector('#header-login').addEventListener('submit', (event) => {
+      event.preventDefault();
+      message.textContent = 'Log in is ready to connect to your backend.';
+      message.classList.add('success');
+    });
+  </script>
+</body>
+</html>
