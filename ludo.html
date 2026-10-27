@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Ludo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>🎲 LUDO</h1>
+
+    <div class="game-container">
+
+        <div class="board" id="board">
+
+            <div class="home red">
+                <h2>RED</h2>
+                <div class="home-tokens" id="redHome"></div>
+            </div>
+
+            <div class="home green">
+                <h2>GREEN</h2>
+                <div class="home-tokens" id="greenHome"></div>
+            </div>
+
+            <div class="home yellow">
+                <h2>YELLOW</h2>
+                <div class="home-tokens" id="yellowHome"></div>
+            </div>
+
+            <div class="home blue">
+                <h2>BLUE</h2>
+                <div class="home-tokens" id="blueHome"></div>
+            </div>
+
+            <div class="center">
+                <div class="triangle red-triangle"></div>
+                <div class="triangle green-triangle"></div>
+                <div class="triangle yellow-triangle"></div>
+                <div class="triangle blue-triangle"></div>
+            </div>
+
+            <div id="path"></div>
+
+        </div>
+
+        <div class="panel">
+
+            <div id="turn">
+                RED'S TURN
+            </div>
+
+            <div id="dice">🎲</div>
+
+            <button id="rollBtn" onclick="rollDice()">
+                ROLL DICE
+            </button>
+
+            <button class="restart" onclick="restartGame()">
+                NEW GAME
+            </button>
+
+            <p id="message">
+                Roll the dice to start!
+            </p>
+
+            <div class="rules">
+                <h3>Rules</h3>
+                <p>🎲 Roll 6 to leave home</p>
+                <p>🔪 Capture opponent tokens</p>
+                <p>⭐ Safe cells cannot be captured</p>
+                <p>🏠 Reach position 57 to finish</p>
+                <p>🏆 Finish all 4 tokens to win</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
